@@ -1,0 +1,22 @@
+{
+  "name": "microbloggin-example-api",
+  "version": "1.0.0",
+  "description": "Estudio MERN",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/areinaldo/microbloggin-example-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/areinaldo/microbloggin-example-api/issues"
+  },
+  "homepage": "https://github.com/areinaldo/microbloggin-example-api#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
