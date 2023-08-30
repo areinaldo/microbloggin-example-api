@@ -38,10 +38,32 @@ router.put('/:id', function(req, res, next){
 
 });
 
-router.delete('/:id', function(req, res){
-  //Todo
-  res.status(200).send('Usuario' + req.body.name + ' ha sido borradp con exito');
-})
+router.delete('/:id', function(req, res, next ){
+  
+  User.findByIdAndDelete(req.params.id, function(err, userInfo){
+    if(err) res.status(500).send(err);
+    else res.sendStatus(200);
+  });
+});
+
+//Comprueba si el usuario existe
+
+router.post('/signin', function(req, res, next){
+  User.findOne({username: req.body.username}, function(err,user){
+    if(err) res.status(500).send('Error Comprobando el Usuario');
+    //Si el usuario existe...
+    if(user != null){
+      user.comparePassword(req.body.password, function(err, isMatch){
+        if(err) return next(err);
+        //Si el pasword es correcto...
+        if(isMatch)
+          res.status(200).send({message: 'ok', role: user.role, id: user.id});
+        else
+          res.status(200).send({message: 'ko'});
+      });
+    }else res.status(401).send({message: 'ko'});
+  });
+});
 
 
 module.exports = router;
